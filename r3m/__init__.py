@@ -55,6 +55,10 @@ def load_r3m(modelid):
         foldername = "r3m_18"
         modelurl = 'https://drive.google.com/uc?id=1A1ic-p4KtYlKXdXHcV2QV0cUzI4kn0u-'
         configurl = 'https://drive.google.com/uc?id=1nitbHQ-GRorxc7vMUiEHjHWP5N11Jvc6'  
+    elif "resnet50" in modelid:
+        foldername = "r3m_50"
+        modelurl = 'https://drive.google.com/uc?id=1Xu0ssuG0N1zjZS54wmWzJ7-nb0-7XzbA'
+        configurl = 'https://drive.google.com/uc?id=10jY2VxrrhfOdNPmsFdES568hjjIoBJx8'
     else:
         raise NameError('Invalid Model ID')
 
