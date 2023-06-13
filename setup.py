@@ -26,6 +26,5 @@ setup(
         'torchvision>=0.8.2',
         'omegaconf>=2.1.1',
         'hydra-core>=1.1.1',
-        'pillow>=9.0.1',
     ],
 )
