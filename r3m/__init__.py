@@ -74,11 +74,11 @@ def load_r3m(modelid):
     cleancfg = cleanup_config(modelcfg)
     rep = hydra.utils.instantiate(cleancfg)
     rep = torch.nn.DataParallel(rep)
-    if "custom" in modelid:
-        if "ego4d" in modelid:
-            modelpath = "./checkpoints/r3m_custom-ego4d.pth"
-        else:
-            modelpath = "./checkpoints/r3m_custom.pth"
+    # if "custom" in modelid:
+    #     if "ego4d" in modelid:
+    #         modelpath = "./checkpoints/r3m_custom-ego4d.pth"
+    #     else:
+    #         modelpath = "./checkpoints/r3m_custom.pth"
     r3m_state_dict = remove_language_head(torch.load(modelpath, map_location=torch.device(device))['r3m'])
     
     rep.load_state_dict(r3m_state_dict)
