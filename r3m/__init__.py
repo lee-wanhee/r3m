@@ -54,7 +54,7 @@ def load_r3m(modelid):
     elif modelid == "resnet18":
         foldername = "r3m_18"
         modelurl = 'https://drive.google.com/uc?id=1A1ic-p4KtYlKXdXHcV2QV0cUzI4kn0u-'
-        configurl = 'https://drive.google.com/uc?id=1nitbHQ-GRorxc7vMUiEHjHWP5N11Jvc6'
+        configurl = 'https://drive.google.com/uc?id=1nitbHQ-GRorxc7vMUiEHjHWP5N11Jvc6'  
     else:
         raise NameError('Invalid Model ID')
 
@@ -70,7 +70,13 @@ def load_r3m(modelid):
     cleancfg = cleanup_config(modelcfg)
     rep = hydra.utils.instantiate(cleancfg)
     rep = torch.nn.DataParallel(rep)
+    if "custom" in modelid:
+        if "ego4d" in modelid:
+            modelpath = "./checkpoints/r3m_custom-ego4d.pth"
+        else:
+            modelpath = "./checkpoints/r3m_custom.pth"
     r3m_state_dict = remove_language_head(torch.load(modelpath, map_location=torch.device(device))['r3m'])
+    
     rep.load_state_dict(r3m_state_dict)
     return rep
 
